@@ -103,10 +103,10 @@
 		5A523A511B3AF579002AF080 /* MatchWithCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				5A523A521B3AF579002AF080 /* AppDelegate.swift */,
 				5A523A561B3AF579002AF080 /* Main.storyboard */,
 				5A523A861B3AFD26002AF080 /* mainTableViewController.swift */,
 				5A523A881B3AFDD4002AF080 /* EditingViewController.swift */,
-				5A523A521B3AF579002AF080 /* AppDelegate.swift */,
 				5A523A831B3AFC10002AF080 /* Model */,
 				5A523A5C1B3AF579002AF080 /* Assets.xcassets */,
 				5A523A5E1B3AF57A002AF080 /* LaunchScreen.storyboard */,
