@@ -15,4 +15,5 @@ class Match: NSManagedObject {
     @NSManaged var matchId : String
     @NSManaged var matchName : String
     @NSManaged var matchDescription : String
+    @NSManaged var matchDate : NSDate
 }

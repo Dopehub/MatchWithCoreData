@@ -16,16 +16,17 @@ class EditingViewController: UIViewController {
 
     @IBOutlet weak var matchDescriptionTf: UITextField!
     @IBOutlet weak var matchNameTf: UITextField!
-    @IBOutlet weak var matchIdTf: UITextField!
+    
+    @IBOutlet weak var dueDate: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if (self.match != nil){
             
-            matchIdTf.text = self.match?.matchId
             matchNameTf.text = self.match?.matchName
             matchDescriptionTf.text = self.match?.matchDescription
+            dueDate.date = (self.match?.matchDate)!
         
         }
         
@@ -41,23 +42,32 @@ class EditingViewController: UIViewController {
         let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDel.managedObjectContext
         let enti = NSEntityDescription.entityForName("Match", inManagedObjectContext: context)
+
+        let dateStg = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMddyy"
+        let todayDateInStg : String = dateFormatter.stringFromDate(dateStg)
         
         do {
         if (self.match == nil) {
             
                 let match : Match =  Match(entity : enti! , insertIntoManagedObjectContext : context)
-                match.matchId = matchIdTf.text!
+                match.matchId = "ID" + todayDateInStg
                 match.matchDescription = matchDescriptionTf.text!
                 match.matchName = matchNameTf.text!
+                match.matchDate = dueDate.date
+            print(match.matchId)
         }
         
         else {
-                
-                self.match?.setValue(self.matchIdTf.text!, forKey: "matchId")
+                self.match?.setValue(todayDateInStg, forKey: "matchId")
                 self.match?.setValue(self.matchNameTf.text!, forKey: "matchName")
                 self.match?.setValue(self.matchDescriptionTf.text!, forKey: "matchDescription")
+                self.match?.setValue(self.dueDate.date, forKey: "matchDate")
                 
            }
+            
+            
         
         try context.save()
 

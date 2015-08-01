@@ -24,14 +24,13 @@ class mainTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        do {
+        
             let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let context : NSManagedObjectContext = appDel.managedObjectContext
             let requ = NSFetchRequest(entityName: "Match")
-            
+           do {
             try matchList = context.executeFetchRequest(requ)
-        }
-        catch {
+        }catch {
             print("error")
         }
         tableView.reloadData()
@@ -57,13 +56,24 @@ class mainTableViewController: UITableViewController {
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> MyTableViewCell {
+        
+        let cell : MyTableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MyTableViewCell
 
         let data : NSManagedObject = matchList[indexPath.row] as! NSManagedObject
+
+        let formatter : NSDateFormatter = NSDateFormatter()
+        formatter.dateFormat = "MM/dd/yyy"
+        let dateFormatted :String = formatter.stringFromDate(data.valueForKeyPath("matchDate") as! NSDate)
         
-        cell.textLabel!.text = data.valueForKeyPath("matchName") as? String
-        cell.detailTextLabel?.text = data.valueForKeyPath("matchDescription") as? String
+        let hformatter : NSDateFormatter = NSDateFormatter()
+            hformatter.dateFormat = "hh:mm"
+        let hourFormatted : String = hformatter.stringFromDate(data.valueForKeyPath("matchDate") as! NSDate)
+        
+        cell.titleText.text = data.valueForKeyPath("matchName") as? String
+        cell.descriptionText.text = data.valueForKeyPath("matchDescription") as? String
+        cell.dateLabelText.text = dateFormatted
+        cell.hourLabelText.text = hourFormatted
 
         return cell
     }
@@ -79,7 +89,6 @@ class mainTableViewController: UITableViewController {
         if (segue.identifier == "editExistantSegue") {
             let indexPath = self.tableView.indexPathForSelectedRow
             let selectedMatch = self.matchList[(indexPath?.row)!]
-            
             nextVc.match = selectedMatch as? Match
             
         }

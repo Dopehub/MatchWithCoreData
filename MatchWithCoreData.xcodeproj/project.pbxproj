@@ -17,6 +17,7 @@
 		5A523A851B3AFC3C002AF080 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A523A841B3AFC3C002AF080 /* Match.swift */; };
 		5A523A871B3AFD26002AF080 /* mainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A523A861B3AFD26002AF080 /* mainTableViewController.swift */; };
 		5A523A891B3AFDD4002AF080 /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A523A881B3AFDD4002AF080 /* EditingViewController.swift */; };
+		5A6102CD1B3F03E700D6BC57 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6102CC1B3F03E700D6BC57 /* MyTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		5A523A841B3AFC3C002AF080 /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		5A523A861B3AFD26002AF080 /* mainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainTableViewController.swift; sourceTree = "<group>"; };
 		5A523A881B3AFDD4002AF080 /* EditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
+		5A6102CC1B3F03E700D6BC57 /* MyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				5A523A521B3AF579002AF080 /* AppDelegate.swift */,
 				5A523A561B3AF579002AF080 /* Main.storyboard */,
+				5A6102CC1B3F03E700D6BC57 /* MyTableViewCell.swift */,
 				5A523A861B3AFD26002AF080 /* mainTableViewController.swift */,
 				5A523A881B3AFDD4002AF080 /* EditingViewController.swift */,
 				5A523A831B3AFC10002AF080 /* Model */,
@@ -278,6 +281,7 @@
 				5A523A531B3AF579002AF080 /* AppDelegate.swift in Sources */,
 				5A523A891B3AFDD4002AF080 /* EditingViewController.swift in Sources */,
 				5A523A851B3AFC3C002AF080 /* Match.swift in Sources */,
+				5A6102CD1B3F03E700D6BC57 /* MyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +426,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MatchWithCoreData/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = devDope.MatchWithCoreData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -437,7 +441,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MatchWithCoreData/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = devDope.MatchWithCoreData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -450,6 +454,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MatchWithCoreDataTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = devDope.MatchWithCoreDataTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -462,6 +467,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MatchWithCoreDataTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = devDope.MatchWithCoreDataTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -473,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = MatchWithCoreDataUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = devDope.MatchWithCoreDataUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -485,6 +492,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = MatchWithCoreDataUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = devDope.MatchWithCoreDataUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -512,6 +520,7 @@
 				5A523A7C1B3AF57A002AF080 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5A523A7D1B3AF57A002AF080 /* Build configuration list for PBXNativeTarget "MatchWithCoreDataTests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +529,7 @@
 				5A523A7F1B3AF57A002AF080 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5A523A801B3AF57A002AF080 /* Build configuration list for PBXNativeTarget "MatchWithCoreDataUITests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +538,7 @@
 				5A523A821B3AF57A002AF080 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
