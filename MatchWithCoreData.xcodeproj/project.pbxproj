@@ -19,6 +19,8 @@
 		5A4ADF241BED4FFD00962543 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4ADF231BED4FFD00962543 /* SystemConfiguration.framework */; };
 		5A4ADF261BED500700962543 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4ADF251BED500700962543 /* libz.tbd */; };
 		5A4ADF281BED501600962543 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4ADF271BED501600962543 /* libsqlite3.tbd */; };
+		5A4ADF2B1BED547900962543 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4ADF2A1BED547900962543 /* Accounts.framework */; };
+		5A4ADF2D1BED548200962543 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4ADF2C1BED548200962543 /* Social.framework */; };
 		5A523A531B3AF579002AF080 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A523A521B3AF579002AF080 /* AppDelegate.swift */; };
 		5A523A581B3AF579002AF080 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A523A561B3AF579002AF080 /* Main.storyboard */; };
 		5A523A5B1B3AF579002AF080 /* MatchWithCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A523A591B3AF579002AF080 /* MatchWithCoreData.xcdatamodeld */; };
@@ -62,6 +64,8 @@
 		5A4ADF231BED4FFD00962543 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5A4ADF251BED500700962543 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		5A4ADF271BED501600962543 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		5A4ADF2A1BED547900962543 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		5A4ADF2C1BED548200962543 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		5A523A4F1B3AF579002AF080 /* MatchWithCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatchWithCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A523A521B3AF579002AF080 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A523A571B3AF579002AF080 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A4ADF2D1BED548200962543 /* Social.framework in Frameworks */,
+				5A4ADF2B1BED547900962543 /* Accounts.framework in Frameworks */,
 				5A4ADF281BED501600962543 /* libsqlite3.tbd in Frameworks */,
 				5A4ADF261BED500700962543 /* libz.tbd in Frameworks */,
 				5A4ADF241BED4FFD00962543 /* SystemConfiguration.framework in Frameworks */,
@@ -121,6 +127,8 @@
 		5A4ADF291BED507800962543 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A4ADF2A1BED547900962543 /* Accounts.framework */,
+				5A4ADF2C1BED548200962543 /* Social.framework */,
 				5A4ADF121BED4F3F00962543 /* Parse.framework */,
 				5A4ADF111BED4F3F00962543 /* Bolts.framework */,
 				5A4ADF231BED4FFD00962543 /* SystemConfiguration.framework */,

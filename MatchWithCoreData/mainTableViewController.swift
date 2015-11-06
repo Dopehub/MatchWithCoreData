@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Parse
 
 class mainTableViewController: UITableViewController {
 
@@ -21,10 +22,16 @@ class mainTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        let testObject = PFObject(className: "TestObject")
+        testObject["foo"] = "bar"
+        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            print("Object has been saved.")
+        }
             let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let context : NSManagedObjectContext = appDel.managedObjectContext
             let requ = NSFetchRequest(entityName: "Server")
