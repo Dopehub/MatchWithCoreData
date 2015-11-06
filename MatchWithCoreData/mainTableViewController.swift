@@ -26,11 +26,7 @@ class mainTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        let testObject = PFObject(className: "TestObject")
-        testObject["foo"] = "bar"
-        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            print("Object has been saved.")
-        }
+     
             let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let context : NSManagedObjectContext = appDel.managedObjectContext
             let requ = NSFetchRequest(entityName: "Server")
