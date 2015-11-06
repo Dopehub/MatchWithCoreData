@@ -12,21 +12,22 @@ import CoreData
 
 class EditingViewController: UIViewController {
     
-    var match : Match?
+    var server : Server?
 
-    @IBOutlet weak var matchDescriptionTf: UITextField!
-    @IBOutlet weak var matchNameTf: UITextField!
+    @IBOutlet weak var rangeIpTf: UITextField!
+    @IBOutlet weak var serverNameTf: UITextField!
+    @IBOutlet weak var fQ: UITextField!
+    @IBOutlet weak var tQ: UITextField!
     
-    @IBOutlet weak var dueDate: UIDatePicker!
-    
+    @IBOutlet weak var sQ: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (self.match != nil){
+        if (self.server != nil){
             
-            matchNameTf.text = self.match?.matchName
-            matchDescriptionTf.text = self.match?.matchDescription
-            dueDate.date = (self.match?.matchDate)!
+            serverNameTf.text = self.server?.serverName
+            rangeIpTf.text = self.server?.rangeIp
+//            dueDate.date = (self.match?.matchDate)!
         
         }
         
@@ -41,30 +42,31 @@ class EditingViewController: UIViewController {
         
         let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDel.managedObjectContext
-        let enti = NSEntityDescription.entityForName("Match", inManagedObjectContext: context)
+        let enti = NSEntityDescription.entityForName("Server", inManagedObjectContext: context)
 
         let dateStg = NSDate()
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MMddyy"
+        dateFormatter.dateFormat = "MMddyyhhmmss"
         let todayDateInStg : String = dateFormatter.stringFromDate(dateStg)
         
         do {
-        if (self.match == nil) {
+        if (self.server == nil) {
             
-                let match : Match =  Match(entity : enti! , insertIntoManagedObjectContext : context)
-                match.matchId = "ID" + todayDateInStg
-                match.matchDescription = matchDescriptionTf.text!
-                match.matchName = matchNameTf.text!
-                match.matchDate = dueDate.date
-            print(match.matchId)
+                let server : Server =  Server(entity : enti! , insertIntoManagedObjectContext : context)
+                server.serverId = "ID" + todayDateInStg
+                server.rangeIp = rangeIpTf.text!
+                server.serverName = serverNameTf.text!
+                server.serverDateAdded = dateStg
+            print(server.serverId)
         }
         
         else {
-                self.match?.setValue(todayDateInStg, forKey: "matchId")
-                self.match?.setValue(self.matchNameTf.text!, forKey: "matchName")
-                self.match?.setValue(self.matchDescriptionTf.text!, forKey: "matchDescription")
-                self.match?.setValue(self.dueDate.date, forKey: "matchDate")
-                
+//                self.match?.setValue(todayDateInStg, forKey: "matchId")
+                self.server!.setValue(self.serverNameTf.text!, forKey: "serverName")
+                self.server!.setValue(self.rangeIpTf.text!, forKey: "rangeIp")
+//                self.match?.setValue(match?.matchDate, forKey: "matchDate")
+            print(server!.serverId)
+            
            }
             
             

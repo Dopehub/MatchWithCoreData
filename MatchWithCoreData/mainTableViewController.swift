@@ -11,7 +11,7 @@ import CoreData
 
 class mainTableViewController: UITableViewController {
 
-    var matchList : Array<AnyObject> = []
+    var serverList : Array<AnyObject> = []
     
     override func viewDidLoad()  {
         super.viewDidLoad()
@@ -27,9 +27,9 @@ class mainTableViewController: UITableViewController {
         
             let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let context : NSManagedObjectContext = appDel.managedObjectContext
-            let requ = NSFetchRequest(entityName: "Match")
+            let requ = NSFetchRequest(entityName: "Server")
            do {
-            try matchList = context.executeFetchRequest(requ)
+            try serverList = context.executeFetchRequest(requ)
         }catch {
             print("error")
         }
@@ -46,13 +46,13 @@ class mainTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        if (self.matchList.count > 0 ) {return 1}
+        if (self.serverList.count > 0 ) {return 1}
         else {return 0}
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return matchList.count
+        return serverList.count
     }
 
     
@@ -60,18 +60,18 @@ class mainTableViewController: UITableViewController {
         
         let cell : MyTableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MyTableViewCell
 
-        let data : NSManagedObject = matchList[indexPath.row] as! NSManagedObject
+        let data : NSManagedObject = serverList[indexPath.row] as! NSManagedObject
 
         let formatter : NSDateFormatter = NSDateFormatter()
         formatter.dateFormat = "MM/dd/yyy"
-        let dateFormatted :String = formatter.stringFromDate(data.valueForKeyPath("matchDate") as! NSDate)
+        let dateFormatted :String = formatter.stringFromDate(data.valueForKeyPath("serverDateAdded") as! NSDate)
         
         let hformatter : NSDateFormatter = NSDateFormatter()
             hformatter.dateFormat = "hh:mm"
-        let hourFormatted : String = hformatter.stringFromDate(data.valueForKeyPath("matchDate") as! NSDate)
+        let hourFormatted : String = hformatter.stringFromDate(data.valueForKeyPath("serverDateAdded") as! NSDate)
         
-        cell.titleText.text = data.valueForKeyPath("matchName") as? String
-        cell.descriptionText.text = data.valueForKeyPath("matchDescription") as? String
+        cell.titleText.text = data.valueForKeyPath("serverName") as? String
+        cell.descriptionText.text = data.valueForKeyPath("rangeIp") as? String
         cell.dateLabelText.text = dateFormatted
         cell.hourLabelText.text = hourFormatted
 
@@ -88,8 +88,8 @@ class mainTableViewController: UITableViewController {
         let nextVc : EditingViewController = segue.destinationViewController as! EditingViewController
         if (segue.identifier == "editExistantSegue") {
             let indexPath = self.tableView.indexPathForSelectedRow
-            let selectedMatch = self.matchList[(indexPath?.row)!]
-            nextVc.match = selectedMatch as? Match
+            let selectedServer = self.serverList[(indexPath?.row)!]
+            nextVc.server = selectedServer as? Server
             
         }
     }
@@ -108,7 +108,7 @@ class mainTableViewController: UITableViewController {
             // Delete the Object from the database
                 let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 let context : NSManagedObjectContext = appDel.managedObjectContext
-                context.deleteObject(self.matchList[indexPath.row] as! NSManagedObject)
+                context.deleteObject(self.serverList[indexPath.row] as! NSManagedObject)
                     do {
                     
                         try context.save()
@@ -116,15 +116,15 @@ class mainTableViewController: UITableViewController {
                     catch{
                         print(error)
                     }
-                let requ = NSFetchRequest(entityName: "Match")
-                try matchList = context.executeFetchRequest(requ)
+                let requ = NSFetchRequest(entityName: "Server")
+                try serverList = context.executeFetchRequest(requ)
             }
             catch {
                 print(error)
             }
             
             // Delete from tableView
-            if (self.matchList.count>0) {
+            if (self.serverList.count>0) {
             
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 

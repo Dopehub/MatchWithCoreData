@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8118.17" systemVersion="14E36b" minimumToolsVersion="Automatic">
-    <entity name="Match" representedClassName="Match" syncable="YES">
-        <attribute name="matchDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="matchDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="matchId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="matchName" optional="YES" attributeType="String" syncable="YES"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
+    <entity name="Server" representedClassName="Server" syncable="YES">
+        <attribute name="rangeIp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serverDateAdded" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="serverId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serverName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Match" positionX="-1602" positionY="-2007" width="128" height="103"/>
+        <element name="Server" positionX="-1602" positionY="-2007" width="128" height="103"/>
     </elements>
 </model>
