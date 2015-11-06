@@ -9,7 +9,6 @@
 
 import UIKit
 import CoreData
-import Parse
 
 class EditingViewController: UIViewController {
     

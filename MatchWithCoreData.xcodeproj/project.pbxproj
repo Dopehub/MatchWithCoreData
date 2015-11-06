@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A4ADF131BED4F3F00962543 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4ADF111BED4F3F00962543 /* Bolts.framework */; };
-		5A4ADF141BED4F3F00962543 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4ADF121BED4F3F00962543 /* Parse.framework */; };
+		5A288C121BED62E2000056D4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A288C111BED62E2000056D4 /* Bolts.framework */; };
+		5A288C141BED62F2000056D4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A288C131BED62F2000056D4 /* Parse.framework */; };
 		5A4ADF161BED4F9B00962543 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4ADF151BED4F9B00962543 /* AudioToolbox.framework */; };
 		5A4ADF181BED4FC600962543 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4ADF171BED4FC600962543 /* CFNetwork.framework */; };
 		5A4ADF1A1BED4FD000962543 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4ADF191BED4FD000962543 /* CoreGraphics.framework */; };
@@ -52,8 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5A4ADF111BED4F3F00962543 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = MatchWithCoreData/Bolts.framework; sourceTree = "<group>"; };
-		5A4ADF121BED4F3F00962543 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = MatchWithCoreData/Parse.framework; sourceTree = "<group>"; };
+		5A288C111BED62E2000056D4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		5A288C131BED62F2000056D4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		5A4ADF151BED4F9B00962543 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5A4ADF171BED4FC600962543 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5A4ADF191BED4FD000962543 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -97,13 +97,13 @@
 				5A4ADF241BED4FFD00962543 /* SystemConfiguration.framework in Frameworks */,
 				5A4ADF221BED4FF400962543 /* StoreKit.framework in Frameworks */,
 				5A4ADF201BED4FEC00962543 /* Security.framework in Frameworks */,
+				5A288C121BED62E2000056D4 /* Bolts.framework in Frameworks */,
 				5A4ADF1E1BED4FE200962543 /* QuartzCore.framework in Frameworks */,
 				5A4ADF1C1BED4FDA00962543 /* CoreLocation.framework in Frameworks */,
+				5A288C141BED62F2000056D4 /* Parse.framework in Frameworks */,
 				5A4ADF1A1BED4FD000962543 /* CoreGraphics.framework in Frameworks */,
 				5A4ADF181BED4FC600962543 /* CFNetwork.framework in Frameworks */,
 				5A4ADF161BED4F9B00962543 /* AudioToolbox.framework in Frameworks */,
-				5A4ADF141BED4F3F00962543 /* Parse.framework in Frameworks */,
-				5A4ADF131BED4F3F00962543 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,10 +127,10 @@
 		5A4ADF291BED507800962543 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A288C131BED62F2000056D4 /* Parse.framework */,
+				5A288C111BED62E2000056D4 /* Bolts.framework */,
 				5A4ADF2A1BED547900962543 /* Accounts.framework */,
 				5A4ADF2C1BED548200962543 /* Social.framework */,
-				5A4ADF121BED4F3F00962543 /* Parse.framework */,
-				5A4ADF111BED4F3F00962543 /* Bolts.framework */,
 				5A4ADF231BED4FFD00962543 /* SystemConfiguration.framework */,
 				5A4ADF211BED4FF400962543 /* StoreKit.framework */,
 				5A4ADF1F1BED4FEC00962543 /* Security.framework */,
@@ -492,6 +492,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MatchWithCoreData",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MatchWithCoreData/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -512,6 +513,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MatchWithCoreData",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MatchWithCoreData/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
