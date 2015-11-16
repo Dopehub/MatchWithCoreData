@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import CoreData
 
-@objc(Server)
-class Server: NSManagedObject {
+
+
+class Server  {
     
-    @NSManaged var serverId : String
-    @NSManaged var serverName : String
-    @NSManaged var rangeIp : String
-    @NSManaged var serverDateAdded : NSDate
+     var serverId : String?
+     var serverName : String?
+     var rangeIp : String?
+     var serverDateAdded : NSDate?
 }

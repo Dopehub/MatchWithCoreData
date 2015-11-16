@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Parse
 
 class mainTableViewController: UITableViewController {
 
@@ -21,20 +22,19 @@ class mainTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        
     }
     
-    override func viewWillAppear(animated: Bool) {
-     
-            let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let context : NSManagedObjectContext = appDel.managedObjectContext
-            let requ = NSFetchRequest(entityName: "Server")
-           do {
-            try serverList = context.executeFetchRequest(requ)
-        }catch {
-            print("error")
-        }
+    override func viewDidAppear(animated: Bool) {
+        
+        let query = PFQuery(className:"Server")
+        do {
+                        try serverList = query.findObjects()
+            
+                    }catch {
+                        print("error")
+                    }
+        
+        
         tableView.reloadData()
 
     }
@@ -62,20 +62,19 @@ class mainTableViewController: UITableViewController {
         
         let cell : MyTableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MyTableViewCell
 
-        let data : NSManagedObject = serverList[indexPath.row] as! NSManagedObject
-
-        let formatter : NSDateFormatter = NSDateFormatter()
-        formatter.dateFormat = "MM/dd/yyy"
-        let dateFormatted :String = formatter.stringFromDate(data.valueForKeyPath("serverDateAdded") as! NSDate)
+        let data : PFObject = serverList[indexPath.row] as! PFObject
         
-        let hformatter : NSDateFormatter = NSDateFormatter()
-            hformatter.dateFormat = "hh:mm"
-        let hourFormatted : String = hformatter.stringFromDate(data.valueForKeyPath("serverDateAdded") as! NSDate)
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy'-'MM'-'dd"
+        let hourFormatter = NSDateFormatter()
+        hourFormatter.dateFormat = "hh':'mm"
+        let date = dateFormatter.stringFromDate((data.createdAt! as NSDate))
+        let hour = hourFormatter.stringFromDate((data.createdAt! as NSDate))
         
-        cell.titleText.text = data.valueForKeyPath("serverName") as? String
-        cell.descriptionText.text = data.valueForKeyPath("rangeIp") as? String
-        cell.dateLabelText.text = dateFormatted
-        cell.hourLabelText.text = hourFormatted
+        cell.titleText.text = data.objectForKey("serverName") as? String
+        cell.descriptionText.text = data.objectForKey("rangeIp") as? String
+        cell.dateLabelText.text = date
+        cell.hourLabelText.text = hour
 
         return cell
     }
@@ -89,10 +88,10 @@ class mainTableViewController: UITableViewController {
         
         let nextVc : EditingViewController = segue.destinationViewController as! EditingViewController
         if (segue.identifier == "editExistantSegue") {
-            let indexPath = self.tableView.indexPathForSelectedRow
-            let selectedServer = self.serverList[(indexPath?.row)!]
-            nextVc.server = selectedServer as? Server
-            
+
+            let indexPath : NSIndexPath! = self.tableView.indexPathForSelectedRow
+            let data : PFObject = serverList[indexPath.row] as! PFObject
+            nextVc.serverId = data.objectId
         }
     }
 
@@ -100,30 +99,21 @@ class mainTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-
-
     
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            do {
+            
             // Delete the Object from the database
-                let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                let context : NSManagedObjectContext = appDel.managedObjectContext
-                context.deleteObject(self.serverList[indexPath.row] as! NSManagedObject)
-                    do {
-                    
-                        try context.save()
-                     }
-                    catch{
-                        print(error)
-                    }
-                let requ = NSFetchRequest(entityName: "Server")
-                try serverList = context.executeFetchRequest(requ)
-            }
-            catch {
-                print(error)
-            }
+//                let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//                let context : NSManagedObjectContext = appDel.managedObjectContext
+//                context.deleteObject(self.serverList[indexPath.row] as! NSManagedObject)
+            let data : PFObject = self.serverList[indexPath.row] as! PFObject
+            data.deleteInBackground()
+            self.serverList.removeAtIndex(indexPath.row)
+            data.saveInBackground()
+            
+
             
             // Delete from tableView
             if (self.serverList.count>0) {

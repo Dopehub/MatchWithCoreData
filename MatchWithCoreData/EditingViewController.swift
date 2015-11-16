@@ -9,25 +9,36 @@
 
 import UIKit
 import CoreData
+import Parse
 
 class EditingViewController: UIViewController {
     
-    var server : Server?
+    var serverId : String?
 
-    @IBOutlet weak var rangeIpTf: UITextField!
-    @IBOutlet weak var serverNameTf: UITextField!
-    @IBOutlet weak var fQ: UITextField!
-    @IBOutlet weak var tQ: UITextField!
+    @IBOutlet weak var rangeIpTf: UITextField?
+    @IBOutlet weak var serverNameTf: UITextField?
+    @IBOutlet weak var fQ: UITextField?
+    @IBOutlet weak var tQ: UITextField?
     
-    @IBOutlet weak var sQ: UITextField!
+    @IBOutlet weak var sQ: UITextField?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (self.server != nil){
+        if (self.serverId != nil){
+           
+            let query = PFQuery(className:"Server")
+            query.getObjectInBackgroundWithId(self.serverId!) {
+                (server: PFObject?, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                } else if let server = server {
+                    print(self.serverId!)
+                    self.serverNameTf!.text! = (server.objectForKey("serverName") as? String)!
+                    self.rangeIpTf!.text! = (server.objectForKey("rangeIp") as? String)!
+                }
+            }
             
-            serverNameTf.text = self.server?.serverName
-            rangeIpTf.text = self.server?.rangeIp
-//            dueDate.date = (self.match?.matchDate)!
         
         }
         
@@ -40,45 +51,38 @@ class EditingViewController: UIViewController {
 
     @IBAction func saveButtonPressed(sender: AnyObject) {
         
-        let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context : NSManagedObjectContext = appDel.managedObjectContext
-        let enti = NSEntityDescription.entityForName("Server", inManagedObjectContext: context)
-
-        let dateStg = NSDate()
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MMddyyhhmmss"
-        let todayDateInStg : String = dateFormatter.stringFromDate(dateStg)
-        
-        do {
-        if (self.server == nil) {
+        if self.serverId == nil {
             
-                let server : Server =  Server(entity : enti! , insertIntoManagedObjectContext : context)
-                server.serverId = "ID" + todayDateInStg
-                server.rangeIp = rangeIpTf.text!
-                server.serverName = serverNameTf.text!
-                server.serverDateAdded = dateStg
-            print(server.serverId)
+            let server = PFObject(className: "Server")
+            server["serverName"] = self.serverNameTf!.text!
+            server["rangeIp"] = self.rangeIpTf!.text!
+            server.saveInBackground()
+            
+        
         }
         
         else {
-//                self.match?.setValue(todayDateInStg, forKey: "matchId")
-                self.server!.setValue(self.serverNameTf.text!, forKey: "serverName")
-                self.server!.setValue(self.rangeIpTf.text!, forKey: "rangeIp")
-//                self.match?.setValue(match?.matchDate, forKey: "matchDate")
-            print(server!.serverId)
-            
-           }
-            
-            
-        
-        try context.save()
 
+            let query = PFQuery(className:"Server")
+            query.getObjectInBackgroundWithId(self.serverId!) {
+                (server: PFObject?, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                } else if let server = server {
+                    
+                    server["serverName"] = self.serverNameTf!.text!
+                    server["rangeIp"] = self.rangeIpTf!.text!
+                    server.saveInBackground()
+                }
+            }
+            
         }
+
+
+
         
-        catch {
-            print("error")
-        }
         
+
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
 
